@@ -7,8 +7,9 @@ all
 docker ps -a
 
 
-if postgress 9.6v is installed then it will run the images else it will fetch from internet docker hub repository and run it
+##if postgress 9.6v is installed then it will run the images else it will fetch from internet docker hub repository and run it
 docker run postgress:9.6
+docker pull postgress
 
 docker images
 
@@ -27,7 +28,7 @@ docker run -d redis //detached mode
 docker stop 24a38858033c //stop with containerid
 docker start 24a38858033c //start 
 
-docker bind port
+#docker bind port   host/laptop_port:docker_container_port 6000:6379
 docker run -p6000:6379 redis
 docker run -p6000:6379  -d redis
 
@@ -36,6 +37,8 @@ docker pull mongo
 docker pull mongo-express
 
 docker logs 41d34389b440
+docker logs modest_williams
+docker logs 
 docker run -d -p6001:6379 --name redisname redis
 
 docker exec -it d117cd1e8d16 /bin/bash
@@ -53,11 +56,13 @@ docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB
 //mongo express
 docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=password --name mongo-express --net mongo-network -e ME_CONFIG_MONGODB_SERVER=mongodb mongo-express
 
+#docker compose takes care of creating common network
+docker-compose -f mongo.yaml up -d
 
-docker-compose -f docker-compose.yaml up
+docker-compose -f mongo.yaml down
 
-docker-compose -f docker-compose.yaml down
 
+#create our own docker image
 build docker image with Dockerfile
 docker build -t my-app:1.0 .
 

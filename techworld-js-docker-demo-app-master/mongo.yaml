@@ -24,3 +24,4 @@ services:
 volumes:
   mongo-data:
     driver: local
+#docker compose takes care of creating common network
