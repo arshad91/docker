@@ -1,0 +1,120 @@
+container is running environment for images
+image is artifact
+currently running
+docker ps 
+
+all
+docker ps -a
+
+
+if postgress 9.6v is installed then it will run the images else it will fetch from internet docker hub repository and run it
+docker run postgress:9.6
+
+docker images
+
+docker pull
+docker run
+docker start
+docker stop
+docker ps
+docker exec -it
+docker logs
+
+
+docker pull redis
+docker run redis // start redis image in a container
+docker run -d redis //detached mode
+docker stop 24a38858033c //stop with containerid
+docker start 24a38858033c //start 
+
+docker bind port
+docker run -p6000:6379 redis
+docker run -p6000:6379  -d redis
+
+
+docker pull mongo
+docker pull mongo-express
+
+docker logs 41d34389b440
+docker run -d -p6001:6379 --name redisname redis
+
+docker exec -it d117cd1e8d16 /bin/bash
+docker exec -it 2b9509bfeea6 /bin/sh
+env
+
+
+docker network ls
+
+docker network create mongo-network
+
+//mongodb 
+docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network mongo
+
+//mongo express
+docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=password --name mongo-express --net mongo-network -e ME_CONFIG_MONGODB_SERVER=mongodb mongo-express
+
+
+docker-compose -f docker-compose.yaml up
+
+docker-compose -f docker-compose.yaml down
+
+build docker image with Dockerfile
+docker build -t my-app:1.0 .
+
+docker run my-app:1.0
+
+to delete image delete container and then remove image
+docker rm containerid
+docker rmi imageid
+
+
+
+######## Volume persistence ######
+3 Volume Types
+1. Host Volume: you decide wherebon the Host file system the reference in made
+docker run -v /home/mount/data:/var/lib/mysql/data
+
+2. Anonymous volume: we dont specify the host volume path .. for each containera folder is generated that gets mounted
+docker run -v /var/lib/mysql/data
+
+3. Named volumes: we dont specify host volume path. We just specify the name
+docker run -v name:/var/lib/mysql/data
+
+
+
+/var/lib/docker/volumes
+
+export PYSPARK_PYTHON=python3
+ app $ /usr/local/bin is in your $PATH.
+-bash: /usr/local/bin: is a directory
+ app $ node -version
+node: bad option: -version
+ app $ node --version
+
+
+
+
+//MYSQL
+docker pull mysql
+docker run --name=testsql  -d -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=testdb -e MYSQL_USER=user -e MYSQL_PASSWORD=password mysql
+
+
+docker pull phpmyadmin/phpmyadmin
+docker run --name myadmin -d --link testsql:db -p 8080:80 phpmyadmin/phpmyadmin
+
+localhost:8080
+
+CREATE TABLE test_tbl (
+id VARCHAR(30),
+name VARCHAR(30)
+)
+
+INSERT INTO 'test_tbl' ('id', 'name') VALUES ('2', 'das');
+INSERT INTO 'test_tbl' ('id', 'name') VALUES ('3', 'affrs');
+INSERT INTO 'test_tbl' ('id', 'name') VALUES ('4', 'agdfrs');
+INSERT INTO 'test_tbl' ('id', 'name') VALUES ('5', 'argfdgfs');
+
+
+
+
+
